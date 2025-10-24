@@ -13,16 +13,16 @@ def products():
     return render_template('products.html')
 
 # Sales route 
-
-
 @app.route('/sales')
 def sales():
-    return 'My sales'
+    return render_template('sales.html')
 
 # stocks route 
+@app.route('/stocks')
+def stocks():
+    return render_template('stocks.html')
 
-@app.route('/stock')
-def stock():
-    return 'My stock'
 
-app.run()
+
+
+app.run(debug=True)
