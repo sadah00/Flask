@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Sales{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Sales</h1>
+
+
+    <div>
+        <p>{{sales}}</p>
+        
+        <table id="example" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Product_Id</th>
+                    <th>Quantity</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>100</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

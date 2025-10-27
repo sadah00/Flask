@@ -68,10 +68,18 @@ def insert_sales(values):
     cur.execute(query,values)
     conn.commit()
     
-new_sale=(2,5)
-insert_sales(new_sale)
-sales = fetch_data('sales')
-print(sales)
+# new_sale=(2,5)
+# insert_sales(new_sale)
+# sales = fetch_data('sales')
+# print(sales)
+
+def insert_stock(values):
+    query="insert into stock(pid,stockquantity)values(%s,%s,now());"
+    cur.execute(query,values)
+    conn.commit()
+
+new_stock=(1,12)
+#insert_stock(new_stock)
 
 
 def profit_per_product():

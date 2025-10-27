@@ -10,17 +10,17 @@ def home():
 # products route
 @app.route('/products')
 def products():
-    return render_template('products.html')
+    return render_template('products.html', products = products)
 
 # Sales route 
 @app.route('/sales')
 def sales():
-    return render_template('sales.html')
+    return render_template('sales.html', sales = sales)
 
 # stocks route 
 @app.route('/stocks')
 def stocks():
-    return render_template('stocks.html')
+    return render_template('stocks.html', stocks = stocks)
 
 
 
