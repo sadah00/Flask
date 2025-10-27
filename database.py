@@ -90,8 +90,8 @@ def profit_per_product():
     product_profit = cur.fetchall()
     return product_profit
 
-myprofits=profit_per_product()
-print(f'my products profit {myprofits}')
+# myprofits=profit_per_product()
+# print(f'my products profit {myprofits}')
 
 def sales_per_product():
     cur.execute("""
@@ -101,5 +101,5 @@ def sales_per_product():
     product_sales = cur.fetchall()
     return product_sales
 
-mysales=sales_per_product()
-print(f'my products sales {mysales}')
+# mysales=sales_per_product()
+# print(f'my products sales {mysales}')

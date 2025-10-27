@@ -7,8 +7,8 @@
     <h1>Products</h1>
 
     <div>
-        <p>{{products}}</p>
-        
+        <!-- <p>{{products}}</p>
+         -->
         <table id="example" class="table table-striped">
             <thead>
                 <tr>
@@ -19,16 +19,20 @@
                 </tr>
             </thead>
             <tbody>
+                {% for prod in products %}
                 <tr>
-                    <td>1</td>
-                    <td>Cocoa</td>
-                    <td>400</td>
-                    <td>600</td>
-
+                    
+                    <td>{{ prod[0] }}</td>
+                    <td>{{ prod[1] }}</td>
+                    <td>{{ prod[2] }}</td>
+                    <td>{{ prod[3] }}</td>
+                    
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
 
 </div>
 {% endblock %}
+                

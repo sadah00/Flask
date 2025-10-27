@@ -8,7 +8,6 @@
 
 
     <div>
-        <p>{{sales}}</p>
         
         <table id="example" class="table table-striped">
             <thead>
@@ -16,15 +15,21 @@
                     <th>Id</th>
                     <th>Product_Id</th>
                     <th>Quantity</th>
+                    <th>Created at</th>
 
                 </tr>
             </thead>
             <tbody>
+                {% for sale in sales %}
                 <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>100</td>
+                    
+                    <td>{{ sale[0] }}</td>
+                    <td>{{ sale[1] }}</td>
+                    <td>{{ sale[2] }}</td>
+                    <td>{{ sale[3] }}</td>
+                   
                 </tr>
+                 {% endfor %}
             </tbody>
         </table>
     </div>
