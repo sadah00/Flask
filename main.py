@@ -1,8 +1,8 @@
-from flask import Flask,render_template
-from database import fetch_data
+from flask import Flask,render_template,request,redirect,url_for,flash
+from database import fetch_data,insert_products,insert_stock,insert_sales
 
 app=Flask(__name__)
-
+app.secret_key="yourkey"
 
 @app.route('/')
 def home():
@@ -14,17 +14,56 @@ def products():
     products=fetch_data("products")
     return render_template('products.html', products = products)
 
+@app.route('/add_products',methods=['GET','POST'])
+def add_products():
+    if request.method== 'POST':
+        productname = request.form["productname"]
+        buyingprice = request.form["buyingprice"]
+        sellingprice = request.form["sellingprice"]
+
+        new_products = (productname,buyingprice,sellingprice)
+        insert_products(new_products)
+    
+        flash("Product added successfully","success")
+    return redirect(url_for('products'))
+
+
 # Sales route 
 @app.route('/sales')
 def sales():
     sales=fetch_data("sales")
     return render_template('sales.html', sales = sales)
 
+@app.route('/make_sale', methods=['GET','POST'])
+def make_sale():
+    if request.method == 'POST':
+        pid= request.form["pid"]
+        quantity= request.form["quantity"]
+
+        new_sale=(pid,quantity)
+    
+        insert_sales(new_sale)
+        flash("Sale made successfully","success")
+    return redirect(url_for('sales'))
+
 # stocks route 
 @app.route('/stocks')
 def stocks():
     stocks=fetch_data("stocks")
     return render_template('stocks.html', stocks = stocks)
+
+@app.route('/manage_stock',methods=['GET','POST'])
+def manage_stock():
+    if request.method== 'POST':
+        pid = request.form["pid"]
+        stockquantity= request.form["stockquantity"]
+
+        new_stock=(pid,stockquantity)
+        insert_stock(new_stock)
+
+        flash("Stock updated successfully","success")
+
+    return redirect(url_for('stock'))
 
 
 
