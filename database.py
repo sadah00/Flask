@@ -73,8 +73,8 @@ def insert_sales(values):
 # sales = fetch_data('sales')
 # print(sales)
 
-def insert_stock(values):
-    query="insert into stock(pid,stockquantity)values(%s,%s,now());"
+def insert_stocks(values):
+    query="insert into stocks(pid,stockquantity)values(%s,%s);"
     cur.execute(query,values)
     conn.commit()
 

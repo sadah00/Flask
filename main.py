@@ -1,7 +1,8 @@
 from flask import Flask,render_template,request,redirect,url_for,flash
-from database import fetch_data,insert_products,insert_stock,insert_sales
+from database import fetch_data,insert_products,insert_stocks,insert_sales
 
 app=Flask(__name__)
+
 app.secret_key="yourkey"
 
 @app.route('/')
@@ -61,11 +62,11 @@ def manage_stock():
         stockquantity= request.form["stockquantity"]
 
         new_stock=(pid,stockquantity)
-        insert_stock(new_stock)
+        insert_stocks(new_stock)
 
         flash("Stock updated successfully","success")
 
-    return redirect(url_for('stock'))
+    return redirect(url_for('stocks'))
 
 
 
