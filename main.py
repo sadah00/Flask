@@ -32,7 +32,8 @@ def add_products():
 @app.route('/sales')
 def sales():
     sales=fetch_data("sales")
-    return render_template('sales.html', sales = sales)
+    products=fetch_data("products")
+    return render_template('sales.html', sales = sales ,products = products)
 
 @app.route('/make_sale', methods=['GET','POST'])
 def make_sale():
@@ -50,7 +51,8 @@ def make_sale():
 @app.route('/stocks')
 def stocks():
     stocks=fetch_data("stocks")
-    return render_template('stocks.html', stocks = stocks)
+    products=fetch_data("products")
+    return render_template('stocks.html', stocks = stocks, products = products)
 
 @app.route('/manage_stock',methods=['GET','POST'])
 def manage_stock():

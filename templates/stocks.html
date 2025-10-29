@@ -26,8 +26,8 @@
                         <div>
                             <select class="form-select" aria-label="Default select example" name="pid">
                                 <option selected>Select Product</option>
-                                {% for prod in products %}
-                                <option value="{{ prod[0] }}">{{ prod[1] }}</option>
+                                {% for product in products %}
+                                <option value="{{ product[0] }}">{{ product[1] }}</option>
                                 {% endfor %}
                             </select>
                         </div>
