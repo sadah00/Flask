@@ -12,6 +12,14 @@
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.css" />
 
+    <!-- chart.js link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <!-- chart cdn link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.min.js"
+        integrity="sha512-n/G+dROKbKL3GVngGWmWfwK0yPctjZQM752diVYnXZtD/48agpUKLIn0xDQL9ydZ91x6BiOmTIFwWjjFi2kEFg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 
 <body>
@@ -54,7 +62,7 @@
 
         {% with messages = get_flashed_messages(with_categories=true) %} {% if
         messages %} {% for category, message in messages %}
-        <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+        <div class="alert alert-{{ category }} alert-dismissible container" role="alert">
             {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -75,6 +83,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/2.3.4/js/dataTables.js"></script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
