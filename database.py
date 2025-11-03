@@ -103,3 +103,19 @@ def sales_per_product():
 
 # mysales=sales_per_product()
 # print(f'my products sales {mysales}')
+
+def sales_per_day():
+    cur.execute("""
+    select date(sales.createdat) as date, sum(products.sellingprice * sales.quantity) as
+    total_sales from products inner join sales on sales.pid = products.id group by(date);
+    """)
+    daily_sales = cur.fetchall()
+    return daily_sales
+
+def profit_per_day():
+    cur.execute("""
+        select date(sales.createdat) as date, sum((products.sellingprice - products.buyingprice)* sales.quantity) as 
+        profit from sales join products on products.id = sales.pid group by(date);
+    """)
+    daily_profit = cur.fetchall()
+    return daily_profit
