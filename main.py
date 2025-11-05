@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request,redirect,url_for,flash
-from database import fetch_data,insert_products,insert_stocks,insert_sales,profit_per_product,sales_per_product,sales_per_day,profit_per_day
+from database import fetch_data,insert_products,insert_stocks,insert_sales,profit_per_product,sales_per_product,sales_per_day,profit_per_day,insert_users
 
 app=Flask(__name__)
 
@@ -82,12 +82,31 @@ def dashboard():
     daily_sales = sales_per_day()
     daily_profit = profit_per_day()
 
+
+    daily_sales_names = [str(i[0]) for i in daily_sales]
     daily_sales_values = [float(i[1]) for i in daily_sales]
+
+    daily_profit_names = [str(i[0]) for i in daily_profit]
     daily_profit_values = [float(i[1]) for i in daily_profit]
 
 
-    return render_template("dashboard.html", product_names=product_names, profit_values=profit_values, sales_values=sales_values, sales_names=sales_names, daily_sales_values=daily_sales_values, daily_profit_values=daily_profit_values)
+    return render_template("dashboard.html", product_names=product_names, profit_values=profit_values, sales_values=sales_values, sales_names=sales_names, daily_sales_names=daily_sales_names, daily_sales_values=daily_sales_values, daily_profit_names=daily_profit_names, daily_profit_values=daily_profit_values)
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/register',methods=['GET','POST'])
+def register():
+    if request.method == 'POST':
+        full_name = request.form['full_name']
+        email = request.form['email']
+        password = request.form['password']
+
+        insert_users((full_name, email, password))
+
+        flash('Registration successful! You can now log in.', 'success')
+    return render_template('register.html')
 
 
 app.run(debug=True)

@@ -119,3 +119,9 @@ def profit_per_day():
     """)
     daily_profit = cur.fetchall()
     return daily_profit
+
+
+def insert_users(values):
+    query="insert into users(full_name,email,password)values(%s,%s,%s);"
+    cur.execute(query,values)
+    conn.commit()
