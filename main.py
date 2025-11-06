@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request,redirect,url_for,flash
-from database import fetch_data,insert_products,insert_stocks,insert_sales,profit_per_product,sales_per_product,sales_per_day,profit_per_day,insert_users
+from database import fetch_data,insert_products,insert_stocks,insert_sales,profit_per_product,sales_per_product,sales_per_day,profit_per_day,insert_users,check_user
 
 app=Flask(__name__)
 
@@ -92,8 +92,25 @@ def dashboard():
 
     return render_template("dashboard.html", product_names=product_names, profit_values=profit_values, sales_values=sales_values, sales_names=sales_names, daily_sales_names=daily_sales_names, daily_sales_values=daily_sales_values, daily_profit_names=daily_profit_names, daily_profit_values=daily_profit_values)
 
-@app.route('/login')
+@app.route('/login',methods=['GET','POST'])
 def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        registered_user = check_user(email)
+        print(registered_user)
+
+        if not registered_user:
+            flash("User doesn't exist,Please Register","danger")
+            return redirect(url_for('register'))
+        else:
+            if password==registered_user[3]:
+                flash("Logged in Successfully","Success")
+                return redirect(url_for("dashboard"))
+            else:
+                flash("Password incorrect,try again","danger")
+
     return render_template('login.html')
 
 @app.route('/register',methods=['GET','POST'])
@@ -103,9 +120,18 @@ def register():
         email = request.form['email']
         password = request.form['password']
 
-        insert_users((full_name, email, password))
+        existing_user = check_user(email)
 
-        flash('Registration successful! You can now log in.', 'success')
+        if not existing_user:
+            new_user = (full_name,email,password)
+            insert_users(new_user)
+            flash("User registered successfully","success")
+
+            return redirect(url_for('register'))
+        
+        else:
+            flash("User already exists,please login","danger")
+
     return render_template('register.html')
 
 
